@@ -1,1 +1,5 @@
-# oli-widgets
+# OLI Widgets
+
+Assumes the presence of JQuery.
+
+
