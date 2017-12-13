@@ -8,11 +8,11 @@ const feedback = (div, correct) => {
         "padding-left": "25px"
     }).append(div);
 
-    // Colors: true, false, or "hint"
+    // Colors: true, false, or "warn"
     const colors =
         correct === true ? ["#ddffdd", "#33aa33"] :
         correct === false ? ["#f4c4c9", "#e75d36"] :
-        correct === "hint" ? ["#f2f497", "ffa100"] :
+        correct === "warn" ? ["#f2f497", "ffa100"] :
         [ "#ffffff", "#000000" ];
 
     return $("<div/>").css({
@@ -36,6 +36,11 @@ const readHint = jquery => {
     const visible = display.css("display") === "block";
 
     return { numero: index, vis: visible }
+}
+
+const initHint = {
+    numero: 0,
+    vis: false
 }
 
 const hint = (hints, initialState) => {
@@ -171,5 +176,6 @@ const hint = (hints, initialState) => {
 module.exports = {
     feedback: feedback,
     readHint: readHint,
+    initHint: initHint,
     hint: hint
 }
