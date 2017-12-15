@@ -121,7 +121,6 @@ const hint = (hints, initialState) => {
         width: "10px",
     }).text("left").click(() => {
         const index = parseInt($(display).attr("numero"));
-        console.log(index);
         $(display).attr("numero", index - 1);
         renderDisplay();
     }));
@@ -138,7 +137,6 @@ const hint = (hints, initialState) => {
         width: "10px",
     }).text("right").click(() => {
         const index = parseInt($(display).attr("numero"));
-        console.log(index);
         $(display).attr("numero", index + 1);
         renderDisplay();
     }));
