@@ -1,19 +1,37 @@
 {
-  "name": "@calculemus/oli-widgets",
-  "version": "1.1.1",
-  "description": "Some standard widgets for Carnegie Mellon's OLI",
-  "main": "main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/calculemuscode/oli-widgets.git"
-  },
-  "author": "Calculemus LLC",
-  "license": "CC-BY-SA-4.0",
-  "bugs": {
-    "url": "https://github.com/calculemuscode/oli-widgets/issues"
-  },
-  "homepage": "https://github.com/calculemuscode/oli-widgets#readme"
+    "name": "@calculemus/oli-widgets",
+    "version": "2.0.0-alpha.3",
+    "description": "Some standard widgets for Carnegie Mellon's OLI",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "devDependencies": {
+        "@calculemus/oli-hammock": "^0.4.7",
+        "@types/jquery": "^3.3.1",
+        "prettier": "^1.12.1",
+        "surge": "^0.20.1",
+        "typedoc": "^0.11.1"
+    },
+    "author": "Calculemus LLC",
+    "scripts": {
+        "compile": "tsc -p .",
+        "pretypedoc": "npm run compile",
+        "typedoc": "typedoc --out typedoc --mode file ./src/index.ts",
+        "presurge": "npm run typedoc",
+        "surge": "surge -p ./typedoc -d oli-hammock.surge.sh",
+        "prettier": "prettier --write src/**/*.ts *.json",
+        "prepublishOnly": "npm run compile"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/calculemuscode/oli-widgets.git"
+    },
+    "license": "CC-BY-SA-4.0",
+    "bugs": {
+        "url": "https://github.com/calculemuscode/oli-widgets/issues"
+    },
+    "homepage": "https://github.com/calculemuscode/oli-widgets#readme",
+    "prettier": {
+        "printWidth": 110,
+        "tabWidth": 4
+    }
 }
