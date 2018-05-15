@@ -4,7 +4,7 @@ import { FeedbackData } from "@calculemus/oli-hammock";
  * If the page is being visited by HTTPS, assume that we're on an OLI server, and serve the hint sprites from the same
  * server. Otherwise, assume we're testing on a client and serve the dev-02 version of the sprite.
  */
-const SPRITE = !document
+const SPRITE = typeof document === "undefined"
     ? "__dummy__"
     : document.location.protocol === "https"
         ? "/repository/presentation/whirlwind-1.4/web/images/asSprite.png"
