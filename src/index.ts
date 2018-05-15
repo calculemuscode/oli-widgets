@@ -1,10 +1,12 @@
 import { FeedbackData } from "@calculemus/oli-hammock";
 
 /**
- * If the page is being visited by HTTPS, assume that we're on an OLI server, and serve the hint sprites from the same server. Otherwise, assume we're testing on a client and serve the dev-02 version of the sprite.
+ * If the page is being visited by HTTPS, assume that we're on an OLI server, and serve the hint sprites from the same
+ * server. Otherwise, assume we're testing on a client and serve the dev-02 version of the sprite.
  */
-const SPRITE =
-    document.location.protocol === "https"
+const SPRITE = !document
+    ? "__dummy__"
+    : document.location.protocol === "https"
         ? "/repository/presentation/whirlwind-1.4/web/images/asSprite.png"
         : "https://dev-02.oli.cmu.edu/repository/presentation/whirlwind-1.4/web/images/asSprite.png";
 
@@ -45,7 +47,8 @@ export function feedback(data?: FeedbackData): HTMLElement {
                 .css({ "font-weight": "bold" })
                 .text("Feedback")
         )
-        .append(container).get(0);
+        .append(container)
+        .get(0);
 }
 
 /**

@@ -1,6 +1,6 @@
 {
     "name": "@calculemus/oli-widgets",
-    "version": "2.0.0-alpha.4",
+    "version": "2.0.0-alpha.6",
     "description": "Some standard widgets for Carnegie Mellon's OLI",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
