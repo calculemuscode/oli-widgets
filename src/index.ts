@@ -160,15 +160,15 @@ export function hint(hints: string[], state: undefined | HintData): JQuery<HTMLE
                 position: "absolute",
                 top: 0,
                 right: 0,
+                background: `url(${SPRITE}) no-repeat 0px 0px`,
                 margin: "5px",
                 padding: 0,
+                "text-indent": "-9999px",
                 height: "8px",
                 width: "8px",
                 display: "block",
                 overflow: "hidden",
-                "text-indent": "-9999px",
-                cursor: "pointer",
-                background: `url(${SPRITE}) no repeat -8px -8px`
+                cursor: "pointer"
             })
             .text("x")
             .click(() => {
@@ -189,7 +189,8 @@ export function hint(hints: string[], state: undefined | HintData): JQuery<HTMLE
                 background: `url(${SPRITE}) no-repeat -8px -14px`,
                 "text-indent": "-9999px",
                 height: "15px",
-                width: "10px"
+                width: "10px",
+                cursor: "pointer"
             })
             .text("left")
             .click(() => {
@@ -211,7 +212,8 @@ export function hint(hints: string[], state: undefined | HintData): JQuery<HTMLE
                 background: `url(${SPRITE}) no-repeat -8px 0px`,
                 "text-indent": "-9999px",
                 height: "15px",
-                width: "10px"
+                width: "10px",
+                cursor: "pointer"
             })
             .text("right")
             .click(() => {
