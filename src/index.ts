@@ -14,7 +14,7 @@ const SPRITE =
 /**
  * Display feedback from the Hammock's feedback data object
  */
-export function feedback(data?: FeedbackData): HTMLElement {
+export function feedback(data?: FeedbackData): JQuery<HTMLElement> {
     if (!data) return $("<div/>").get(0);
 
     const container = $("<div/>")
@@ -48,8 +48,7 @@ export function feedback(data?: FeedbackData): HTMLElement {
                 .css({ "font-weight": "bold" })
                 .text("Feedback")
         )
-        .append(container)
-        .get(0);
+        .append(container);
 }
 
 /**
@@ -72,21 +71,21 @@ export const emptyHint: HintData = {
 /**
  * readHint takes a JQuery element containing a hint and extracts the hint state.
  */
-export function readHint(jquery: JQuery<HTMLElement>) {
-    const display = jquery.find(".hint_display");
+export function readHint(element: JQuery<HTMLElement>) {
+    const display = element.find(".hint_display");
     if (display.length !== 1) {
         console.error(`readHint method called on a non-hint object`);
-        console.error(`(${display.length} hint-display divs, should be exactly 1)`)
+        console.error(`(${display.length} hint-display divs, should be exactly 1)`);
         return emptyHint;
     }
     const numero = display.attr("numero");
-    if (numero === undefined) {
+    const vis = display.attr("vis");
+    if (numero === undefined || vis === undefined) {
         console.error("readHint method called on a non-hint object (no number field)");
         console.error(display);
         return emptyHint;
     }
-
-    return { numero: parseInt(numero), vis: display.css("display") === "true" };
+    return { numero: parseInt(numero), vis: vis === "true" };
 }
 
 /**
@@ -95,18 +94,23 @@ export function readHint(jquery: JQuery<HTMLElement>) {
  * @param hints List of hints
  * @param state Current hint state (should be {@link emptyHint} or a {@link HintData} returned from reading the hint state previously with {@link readHint}. Do not construct or modify {@link HintData} objects.)
  */
-export function hint(hints: string[] | undefined, state: HintData): HTMLElement {
-    if (hints === undefined) {
+export function hint(hints: string[], state: undefined | HintData): JQuery<HTMLElement> {
+    if (!hints) {
         console.error("hint() widget called without hints");
-        return $("<div/>").get(0);
+        return $("<div/>");
+    }
+
+    if (!state) {
+        console.error("hint() widget called without state");
+        return $("<div/>");
     }
 
     // The "display" div will contain the visual presentation of the hint, and always appears immediately
     // underneath the speech-bubble hint "hat".
     const display = $("<div/>", {
         class: "hint_display",
-        vis: state ? state.vis : "false",
-        numero: state ? state.numero : "0"
+        vis: state ? `${state.vis}` : "false",
+        numero: state ? `${state.numero}` : "0"
     }).css({
         background: "#fde9a2",
         "border-color": "#73716e",
@@ -125,7 +129,7 @@ export function hint(hints: string[] | undefined, state: HintData): HTMLElement 
     // The re-render method only manipulates the "display" object.
     const renderDisplay = () => {
         const visible = $(display).attr("vis") === "true";
-        const index = parseInt($(display).attr("numero") || "0");
+        const index = parseInt($(display).attr("numero")!);
 
         $(display).css({
             display: visible ? "block" : "none"
@@ -164,7 +168,7 @@ export function hint(hints: string[] | undefined, state: HintData): HTMLElement 
                 overflow: "hidden",
                 "text-indent": "-9999px",
                 cursor: "pointer",
-                background: `url(${SPRITE}) no repeat 0px 0px`
+                background: `url(${SPRITE}) no repeat -8px -8px`
             })
             .text("x")
             .click(() => {
@@ -189,7 +193,7 @@ export function hint(hints: string[] | undefined, state: HintData): HTMLElement 
             })
             .text("left")
             .click(() => {
-                const index = parseInt($(display).attr("numero") || "0");
+                const index = parseInt($(display).attr("numero")!);
                 $(display).attr("numero", index - 1);
                 renderDisplay();
             })
@@ -210,7 +214,7 @@ export function hint(hints: string[] | undefined, state: HintData): HTMLElement 
             })
             .text("right")
             .click(() => {
-                const index = parseInt($(display).attr("numero") || "0");
+                const index = parseInt($(display).attr("numero")!);
                 $(display).attr("numero", index + 1);
                 renderDisplay();
                 resizeOLIFrame();
@@ -252,6 +256,5 @@ export function hint(hints: string[] | undefined, state: HintData): HTMLElement 
 
     return $("<div/>")
         .append(hat)
-        .append(display)
-        .get(0);
+        .append(display);
 }
