@@ -15,7 +15,7 @@ const SPRITE =
  * Display feedback from the Hammock's feedback data object
  */
 export function feedback(data?: FeedbackData): JQuery<HTMLElement> {
-    if (!data) return $("<div/>").get(0);
+    if (!data) return $("<div/>");
 
     const container = $("<div/>")
         .css({
@@ -196,6 +196,7 @@ export function hint(hints: string[], state: undefined | HintData): JQuery<HTMLE
                 const index = parseInt($(display).attr("numero")!);
                 $(display).attr("numero", index - 1);
                 renderDisplay();
+                resizeOLIFrame();
             })
     );
 
