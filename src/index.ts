@@ -62,27 +62,32 @@ export type HintData = {
 };
 
 /**
- * readHint takes a JQuery element containing a hint and extracts the hint state.
- */
-export function readHint(jquery: JQuery<HTMLElement>) {
-    const display = jquery.find("#hint_display");
-    const numero = display.attr("numero");
-    if (numero === undefined) {
-        console.error("readHint method called on a non-hint object:");
-        console.error(display);
-        throw new Error("invalid input for readHint()");
-    }
-
-    return { numero: parseInt(numero), vis: display.css("display") === "x" };
-}
-
-/**
  * Default hint state: creates a clickable hint textbox but no displayed hint.
  */
 export const emptyHint: HintData = {
     numero: 0,
     vis: false
 };
+
+/**
+ * readHint takes a JQuery element containing a hint and extracts the hint state.
+ */
+export function readHint(jquery: JQuery<HTMLElement>) {
+    const display = jquery.find(".hint_display");
+    if (display.length !== 1) {
+        console.error(`readHint method called on a non-hint object`);
+        console.error(`(${display.length} hint-display divs, should be exactly 1)`)
+        return emptyHint;
+    }
+    const numero = display.attr("numero");
+    if (numero === undefined) {
+        console.error("readHint method called on a non-hint object (no number field)");
+        console.error(display);
+        return emptyHint;
+    }
+
+    return { numero: parseInt(numero), vis: display.css("display") === "true" };
+}
 
 /**
  * Render a hint.
@@ -99,7 +104,7 @@ export function hint(hints: string[] | undefined, state: HintData): HTMLElement 
     // The "display" div will contain the visual presentation of the hint, and always appears immediately
     // underneath the speech-bubble hint "hat".
     const display = $("<div/>", {
-        id: "display",
+        class: "hint_display",
         vis: state ? state.vis : "false",
         numero: state ? state.numero : "0"
     }).css({
