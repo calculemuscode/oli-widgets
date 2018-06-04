@@ -7,9 +7,9 @@ import { FeedbackData, resizeOLIFrame } from "@calculemus/oli-hammock";
 const SPRITE =
     typeof document === "undefined"
         ? "__dummy__"
-        : document.location.protocol === "https"
+        : document.location.protocol === "https:"
             ? "/repository/presentation/whirlwind-1.4/web/images/asSprite.png"
-            : "https://dev-02.oli.cmu.edu/repository/presentation/whirlwind-1.4/web/images/asSprite.png";
+            : "https://oli.cmu.edu/repository/presentation/whirlwind-1.4/web/images/asSprite.png";
 
 /**
  * Display feedback from the Hammock's feedback data object
