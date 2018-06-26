@@ -1,10 +1,9 @@
 language: node_js
-node_js: "node"
-
+node_js: node
 script:
-  - npm run compile
-
+- npm run compile
 deploy:
+  matrix:
   - provider: npm
     skip_cleanup: true
     on:
@@ -12,4 +11,4 @@ deploy:
       repo: calculemuscode/oli-widgets
     email: rob@calculem.us
     api_key:
-      secure: ZKm5/rKMNsXXiV4jcEPg8vtM7xBCT9Q5c72nGsBDfg4kItIQf/J5hXqmTFXsj1NAMNemmiZrUBvOv+VjEYWcrmNqUvg9p0enhOi9UqQEAJ+ZXlyo/qz8FCuzE8gjxTYz1UA3gpAXAILLUqdIP3QQiOcpYZHHoRW+3fNaosls86QJXs7+wGAOa+87YJvMbFKn8VEZt76x7RKxMRDCskWgtrHPm4kzCCKXzym/s/uFHiHPbNJqzarK8FdBEn1jfhZ0/fWn3nQheNy23KdHomwn9zO0Gf7kqysXqpf8LlWUH/MMmNAfa1WCY2ID6t0vadDC7KcxhnJAb8gfn2N4utWfM9ndRCSVvR6YO24kvaAZ7H2yWxiW0KsHpT7pqU3YMUJZBC3mlWEBOXEoYZtfeyUvQuuoeYjK+d5XvJNvyCWXUWJn3px+Xbrq8AEZzJ3r/e/qkk8UToj16t8GtZdoJ8d4F4Kr7WR0ILXgWU1kpr23GGXjxxh7TKc4g/sguu9OkjCM6g3yhT9XAxEPJLijrIyWjsLtsnNI1WeOBDUNRTVx15YfIyM4LmEuqfTzZ3CbKDT2+gRHww7DHUX54iBQAViJr/2RbgszKRiFmD3g+05I9il5e6C+dX1veA1Q3dTUYyb9lYxlIu7bbZDxTvGR4fK3juql/nY/nCs+QaJihV4pu8A=
+      secure: mEHWItZUPm79AwhXQfcn3cqRr6zxJ8NAcjANVfVCJqS7Croa9CidxZPycj8VhzVEzCbyJEVmh0BKYY8t5EnpjNEBT3jppQqPvAH6LS8HPOMJDHHJVonRMX3EWajprwqyKNc0Bgmgl7xTHHLPNKgnG8jiOWyljWN0zXSnVhmxZ+0+HUtQCJwXgH1WCRTT8fCBkeWSu5Da5bzTSt/QSUs/0jNeXRH+4sMCWHuxZSP2HTwhnc4JnCPz151eni51Qa8AlTZIO413wevzaZerrDoP9VeR+Jts/ka7p6j5YGKLxeAXjRxseZ8iaytIXmSzZGu9VNf4TPazs99VedYsyfAvDVfh0TchpfqOTt1Gp3Xxppx12O0a21xpR7oxV1eDaJjNE8tHXq78v18trta6MD95MJvwSg6WzjphpVyUkS/RtyQjvRrJa8yz5dzrUlDiXDWE1haSeC7IkMAsE0okL/C/JqUhTauWdruuzIymKYd9L7vQ5KERNxoqtl5rmtxgN26iysUTSflM5KK6P2aBl+WzYFfAyurntwCTSPC9Zs7ipFqD2UD86StK9T9V/bHCpsT1f3rjr6z0V5sKCk0g8gvua8BpZwR5sH6/AKAIFhX10gXHmgWHKyLS6ipSoKwuEDywmqQC3Z9mYmsu8fJX+fspStojnh4uwjLcAJhSyJlMys0=
