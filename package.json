@@ -1,11 +1,11 @@
 {
     "name": "@calculemus/oli-widgets",
-    "version": "3.0.1",
+    "version": "3.0.4",
     "description": "Some standard widgets for Carnegie Mellon's OLI",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "devDependencies": {
-        "@calculemus/oli-hammock": "^3.0.3",
+        "@calculemus/oli-hammock": "^3.0.0",
         "@types/jquery": "^3.3.4",
         "prettier": "^1.13.6",
         "surge": "^0.20.1",
