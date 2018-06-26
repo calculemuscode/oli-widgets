@@ -1,4 +1,4 @@
-import { FeedbackData, resizeOLIFrame } from "@calculemus/oli-hammock";
+import { FeedbackData } from "@calculemus/oli-hammock";
 
 /**
  * If the page is being visited by HTTPS, assume that we're on an OLI server, and serve the hint sprites from the same
@@ -174,7 +174,6 @@ export function hint(hints: string[], state: undefined | HintData): JQuery<HTMLE
             .click(() => {
                 $(display).attr("vis", "false");
                 renderDisplay();
-                resizeOLIFrame();
             })
     );
 
@@ -197,7 +196,6 @@ export function hint(hints: string[], state: undefined | HintData): JQuery<HTMLE
                 const index = parseInt($(display).attr("numero")!);
                 $(display).attr("numero", index - 1);
                 renderDisplay();
-                resizeOLIFrame();
             })
     );
 
@@ -220,7 +218,6 @@ export function hint(hints: string[], state: undefined | HintData): JQuery<HTMLE
                 const index = parseInt($(display).attr("numero")!);
                 $(display).attr("numero", index + 1);
                 renderDisplay();
-                resizeOLIFrame();
             })
     );
 
@@ -250,7 +247,6 @@ export function hint(hints: string[], state: undefined | HintData): JQuery<HTMLE
             const vis = $(display).attr("vis") === "true";
             $(display).attr("vis", `${!vis}`);
             renderDisplay();
-            resizeOLIFrame();
         })
         .text("hint");
 
