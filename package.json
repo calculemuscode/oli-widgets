@@ -5,7 +5,7 @@
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "devDependencies": {
-        "@calculemus/oli-hammock": "^3.0.2",
+        "@calculemus/oli-hammock": "^3.0.3",
         "@types/jquery": "^3.3.4",
         "prettier": "^1.13.6",
         "surge": "^0.20.1",
