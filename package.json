@@ -1,25 +1,25 @@
 {
     "name": "@calculemus/oli-widgets",
-    "version": "3.0.6",
+    "version": "4.0.0",
     "description": "Some standard widgets for Carnegie Mellon's OLI",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "devDependencies": {
-        "@calculemus/oli-hammock": "^3.0.0",
-        "@types/jquery": "^3.3.4",
-        "prettier": "^1.13.6",
+        "@calculemus/oli-hammock": "^4.0.0-rc3",
+        "@types/jquery": "^3.3.22",
+        "prettier": "^1.15.2",
         "surge": "^0.20.1",
-        "typedoc": "^0.11.1"
+        "typedoc": "^0.13.0"
     },
     "author": "Calculemus LLC",
     "scripts": {
-        "compile": "tsc -p .",
-        "pretypedoc": "npm run compile",
+        "tsc": "tsc -p .",
+        "pretypedoc": "npm run tsc",
         "typedoc": "typedoc --out typedoc --mode file ./src/index.ts",
         "presurge": "npm run typedoc",
         "surge": "surge -p ./typedoc -d oli-hammock.surge.sh",
         "prettier": "prettier --write src/**/*.ts *.json",
-        "prepublishOnly": "npm run compile"
+        "prepublishOnly": "npm run tsc"
     },
     "repository": {
         "type": "git",

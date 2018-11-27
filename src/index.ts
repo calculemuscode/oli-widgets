@@ -1,15 +1,5 @@
-import { FeedbackData } from "@calculemus/oli-hammock";
-
-/**
- * If the page is being visited by HTTPS, assume that we're on an OLI server, and serve the hint sprites from the same
- * server. Otherwise, assume we're testing on a client and serve the dev-02 version of the sprite.
- */
-const SPRITE =
-    typeof document === "undefined"
-        ? "__dummy__"
-        : document.location.protocol === "https:"
-            ? "/repository/presentation/whirlwind-1.4/web/images/asSprite.png"
-            : "https://oli.cmu.edu/repository/presentation/whirlwind-1.4/web/images/asSprite.png";
+import { FeedbackData, STATUS_CORRECT, STATUS_INCORRECT, STATUS_NOT_FOUND, STATUS_INFO } from "@calculemus/oli-hammock";
+const SPRITE = "/repository/presentation/whirlwind-1.4/web/images/asSprite.png";
 
 /**
  * Display feedback from the Hammock's feedback data object
@@ -22,15 +12,15 @@ export function feedback(data?: FeedbackData): JQuery<HTMLElement> {
             display: "inline-block",
             "padding-left": "25px"
         })
-        .append(data.message);
+        .append(data.status === STATUS_NOT_FOUND ? `Grading error: no feedback was provided matching the key <code>${data.message}</code>` : data.message);
 
     // Colors: true, false, and "info"
     const colors =
-        data.correct === true
+        data.status === STATUS_CORRECT
             ? ["#ddffdd", "#33aa33"]
-            : data.correct === false
+            : data.status === STATUS_INCORRECT
                 ? ["#f4c4c9", "#e75d36"]
-                : data.correct === "info"
+                : data.status === STATUS_INFO
                     ? ["#f2f497", "ffa100"]
                     : ["#ffffff", "#000000"];
 
