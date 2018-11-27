@@ -3,7 +3,6 @@ node_js: node
 script:
 - npm run tsc
 deploy:
-  matrix:
   - provider: npm
     skip_cleanup: true
     on:
